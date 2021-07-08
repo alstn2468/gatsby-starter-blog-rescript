@@ -8,11 +8,12 @@
     "strict": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "downlevelIteration": true
+    "downlevelIteration": true,
     "jsx": "react-jsx",
     "baseUrl": "."
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "gatsby/**/*"
   ]
 }

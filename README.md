@@ -1,2 +1,2 @@
-# gatsby-starter-blog-reason
-🍭 Gatsby blog template using ReasonML 
+# gatsby-starter-blog-rescript
+🍭 Gatsby blog template using Rescript

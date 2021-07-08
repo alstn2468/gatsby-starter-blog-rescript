@@ -121,6 +121,7 @@ public/
 lib/
 
 # rescript
+*.gen.tsx
 *.bs.js
 .merlin
 .bsb.lock
