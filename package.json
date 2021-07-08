@@ -1,0 +1,62 @@
+{
+  "name": "gatsby-starter-blog-reason",
+  "version": "0.0.0",
+  "description": "🍭 Gatsby blog template using ReasonML",
+  "author": {
+    "name": "Minsu Kim",
+    "email": "alstn2468_@naver.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alstn2468/gatsby-starter-blog-reason/issues"
+  },
+  "homepage": "https://github.com/alstn2468/gatsby-starter-blog-reason#readme",
+  "scripts": {
+    "prepare-gatsby": "babel gatsby -d . -x .ts,.tsx --presets gatsby-package",
+    "postinstall": "yarn prepare-gatsby",
+    "build": "yarn prepare-gatsby && yarn re:build && gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "dev": "gatsby develop",
+    "re:build": "bsb -make-world -clean-world",
+    "re:watch": "bsb -make-world -clean-world -w",
+    "stylelint": "stylelint --fix 'src/**/*.{ts,tsx}'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alstn2468/gatsby-starter-blog-reason.git"
+  },
+  "keywords": [
+    "reason",
+    "reasonml",
+    "gatsby",
+    "gatsbyjs",
+    "react",
+    "template",
+    "blog",
+    "fp",
+    "functional-programming"
+  ],
+  "dependencies": {
+    "bs-platform": "^9.0.2",
+    "gatsby": "^3.9.0",
+    "gatsby-cli": "^3.9.0",
+    "gatsby-plugin-manifest": "^3.9.0",
+    "gatsby-plugin-reason": "^2.1.0",
+    "react": "^17.0.2",
+    "reason-react": "^0.9.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.5",
+    "@babel/core": "^7.14.6",
+    "@types/dotenv-safe": "^8.1.1",
+    "@types/react": "^17.0.14",
+    "babel-preset-gatsby": "^1.9.0",
+    "babel-preset-gatsby-package": "^1.9.0",
+    "dotenv-safe": "^8.2.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-order": "^4.1.0",
+    "typescript": "^4.3.5"
+  }
+}

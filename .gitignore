@@ -102,3 +102,25 @@ dist
 
 # TernJS port file
 .tern-port
+
+.DS_Store
+
+/node_modules
+
+public/
+.cache/
+
+*.tsbuildinfo
+
+.env*
+!.env.example
+
+**/__generated__/
+
+/*.js
+lib/
+
+# rescript
+*.bs.js
+.merlin
+.bsb.lock
