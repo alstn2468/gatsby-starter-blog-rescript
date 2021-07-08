@@ -21,7 +21,8 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({
     markdownRemarkNode,
     IO.of,
     IO.map((node) => ({
-      fileNode: getNode(node.parent as string), markdownRemarkNode
+      fileNode: getNode(node.parent as string),
+      markdownRemarkNode,
     })),
     IO.map(({ fileNode, markdownRemarkNode }) => ({
       markdownRemarkNode, slug: getFileNameFromFileNode(fileNode as FileNode)
@@ -29,7 +30,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({
     IO.map(({ markdownRemarkNode, slug }) => createNodeField({
       node: markdownRemarkNode,
       name: 'slug',
-      value: slug
+      value: slug,
     })),
   );
   const isMarkdownRemarkNode = (node: Node) =>
