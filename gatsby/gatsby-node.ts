@@ -2,8 +2,7 @@ import type { GatsbyNode, Node } from 'gatsby';
 import path from 'path';
 import * as IO from 'fp-ts/lib/IO';
 import * as Option from 'fp-ts/lib/Option';
-import { pipe } from 'fp-ts/lib/function';
-import { monoidVoid } from 'fp-ts/lib/Monoid';
+import { constVoid, pipe } from 'fp-ts/lib/function';
 
 export const onCreateNode: GatsbyNode['onCreateNode'] = ({
   node,
@@ -33,15 +32,14 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({
       value: slug,
     })),
   );
-  const isMarkdownRemarkNode = (node: Node) =>
-    node.internal.type === 'MarkdownRemark' ? Option.some(node) : Option.none;
-
-  pipe(
+  const isMarkdownRemarkNode = (node: Node) => node.internal.type === 'MarkdownRemark';
+  const run = (node: Node) => pipe(
     node,
-    isMarkdownRemarkNode,
-    Option.fold(
-      monoidVoid.concat,
-      (node) => createNodeWithSlug(node)(),
+    Option.fromPredicate(isMarkdownRemarkNode),
+    Option.match(
+      constVoid,
+      createNodeWithSlug,
     ),
   );
+  run(node);
 };
