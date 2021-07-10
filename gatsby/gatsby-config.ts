@@ -47,12 +47,6 @@ const plugins: GatsbyConfig['plugins'] = [
     },
   },
   {
-    resolve: 'gatsby-plugin-reason',
-    options: {
-      derivePathFromComponentName: true,
-    },
-  },
-  {
     resolve: 'gatsby-source-filesystem',
     options: {
       path: `${__dirname}/content/post`,
