@@ -8,47 +8,56 @@ import { constVoid, pipe, identity } from 'fp-ts/lib/function';
 
 export const onCreateNode: GatsbyNode['onCreateNode'] = ({
   node,
-  actions: {
-    createNodeField,
-  },
+  actions: { createNodeField },
 }) => {
   interface MarkdownRemarkNode extends Node {
-    fileAbsolutePath: string
+    fileAbsolutePath: string;
   }
-  const getFileNameFromNode = (markdownRemarkNode: MarkdownRemarkNode): string =>
-    path.parse(markdownRemarkNode.fileAbsolutePath).name;
-  const createMarkdownRemarkNodeWithSlug = (markdownRemarkNode: Node) => pipe(
-    markdownRemarkNode,
-    IO.of,
-    IO.map((markdownRemarkNode) => ({
+  const getFileNameFromNode = (
+    markdownRemarkNode: MarkdownRemarkNode
+  ): string => path.parse(markdownRemarkNode.fileAbsolutePath).name;
+  const createMarkdownRemarkNodeWithSlug = (markdownRemarkNode: Node) =>
+    pipe(
       markdownRemarkNode,
-      slug: getFileNameFromNode(markdownRemarkNode as MarkdownRemarkNode)
-    })),
-    IO.map(({ markdownRemarkNode, slug }) => createNodeField({
-      node: markdownRemarkNode,
-      name: 'slug',
-      value: slug,
-    })),
-  );
-  const isMarkdownRemarkNode = (node: Node) => node.internal.type === 'MarkdownRemark';
-  const createMarkdwonNode = (node: Node) => pipe(
-    node,
-    Option.fromPredicate(isMarkdownRemarkNode),
-    Option.match(
-      () => constVoid,
-      createMarkdownRemarkNodeWithSlug,
-    ),
-  );
+      IO.of,
+      IO.map((markdownRemarkNode) => ({
+        markdownRemarkNode,
+        slug: getFileNameFromNode(markdownRemarkNode as MarkdownRemarkNode),
+      })),
+      IO.map(({ markdownRemarkNode, slug }) =>
+        createNodeField({
+          node: markdownRemarkNode,
+          name: 'slug',
+          value: slug,
+        })
+      )
+    );
+  const isMarkdownRemarkNode = (node: Node) =>
+    node.internal.type === 'MarkdownRemark';
+  const createMarkdwonNode = (node: Node) =>
+    pipe(
+      node,
+      Option.fromPredicate(isMarkdownRemarkNode),
+      Option.match(() => constVoid, createMarkdownRemarkNodeWithSlug)
+    );
   const run = createMarkdwonNode(node);
   run();
 };
 
 export const createPages: GatsbyNode['createPages'] = async ({
   graphql,
-  actions: {
-    createPage: baseCreatePage,
-  },
+  actions: { createPage: baseCreatePage },
 }) => {
+  type MarkdownRemarkNode = {
+    fields: { slug: string };
+    frontmatter: { title: string; category: string; draft: boolean };
+  };
+  type MarkdownRemarkNodes = {
+    allMarkdownRemark: {
+      nodes: MarkdownRemarkNode[];
+    };
+  };
+  type Nullable<T> = T | null;
   const gql = String.raw;
   const markdownRemarkQuery = gql`
     {
@@ -67,60 +76,82 @@ export const createPages: GatsbyNode['createPages'] = async ({
           }
         }
       }
-    }`
-  type MarkdownRemarkNode = {
-    fields: { slug: string };
-    frontmatter: { title: string, category: string, draft: boolean };
-  };
-  type MarkdownRemarkNodes = {
-    allMarkdownRemark: {
-      nodes: MarkdownRemarkNode[];
-    };
-  };
-  const pageComponentPath = path.resolve("src/templates/PostDetail.gen.tsx");
-  const markdownRemarkQueryResult = await graphql<MarkdownRemarkNodes>(markdownRemarkQuery);
+    }
+  `;
+  const pageComponentPath = path.resolve('src/templates/PostDetail.gen.tsx');
+  const markdownRemarkQueryResult = await graphql<MarkdownRemarkNodes>(
+    markdownRemarkQuery
+  );
 
-  const queryHasError = (queryResult: typeof markdownRemarkQueryResult): boolean =>
-    !queryResult.errors
+  const queryHasError = (
+    queryResult: typeof markdownRemarkQueryResult
+  ): boolean => !queryResult.errors;
+
   const isVisibleMarkdownRemarkNode = (node: MarkdownRemarkNode) =>
-    (process.env.NODE_ENV === 'development' || !node.frontmatter.draft)
-      && !!node.frontmatter.category;
-  const getPreviousNode = (currentNodeIndex: number, nodes: MarkdownRemarkNode[]) =>
+    (process.env.NODE_ENV === 'development' || !node.frontmatter.draft) &&
+    !!node.frontmatter.category;
+
+  const getPreviousNode = (
+    currentNodeIndex: number,
+    nodes: MarkdownRemarkNode[]
+  ) =>
     currentNodeIndex === nodes.length - 1 ? null : nodes[currentNodeIndex + 1];
+
   const getNextNode = (currentNodeIndex: number, nodes: MarkdownRemarkNode[]) =>
-      currentNodeIndex === 0 ? null : nodes[currentNodeIndex - 1];
+    currentNodeIndex === 0 ? null : nodes[currentNodeIndex - 1];
+
+  const getNodeWithPreviousAndNextNode =
+    (currentNode: MarkdownRemarkNode) =>
+    (currentNodeIndex: number, nodes: MarkdownRemarkNode[]) => ({
+      ...currentNode,
+      previous: getPreviousNode(currentNodeIndex, nodes),
+      next: getNextNode(currentNodeIndex, nodes),
+    });
+
+  const createMarkdownRemarkPages =
+    (createPage: typeof baseCreatePage, pageComponentPath: string) =>
+    (
+      remarkdownNode: MarkdownRemarkNode & {
+        previous: Nullable<MarkdownRemarkNode>;
+        next: Nullable<MarkdownRemarkNode>;
+      }
+    ) =>
+      createPage({
+        path: remarkdownNode.fields.slug,
+        component: pageComponentPath,
+        context: {
+          previous: remarkdownNode.previous,
+          next: remarkdownNode.next,
+        },
+      });
 
   const markdownRemarkNodes = pipe(
     markdownRemarkQueryResult,
-    Either.fromPredicate(
-      queryHasError,
-      (e) => { throw e.errors },
-    ),
+    Either.fromPredicate(queryHasError, (e) => {
+      throw e.errors;
+    }),
     Either.map((result) => result.data?.allMarkdownRemark.nodes ?? []),
-    Either.fold(() => [], identity),
+    Either.fold(() => [], identity)
   );
 
   const createPageByMarkdownRemarkNodes = (
     createPage: typeof baseCreatePage,
-    pageComponentPath: string,
-  ) => pipe(
-    markdownRemarkNodes,
-    Arr.filter(isVisibleMarkdownRemarkNode),
-    (nodes) => pipe(
-      nodes,
-      Arr.mapWithIndex((index, node) => ({
-        ...node,
-        previous: getPreviousNode(index, nodes),
-        next: getNextNode(index, nodes),
-      })),
-      Arr.map(({ fields: { slug }, previous, next }) =>
-        createPage({
-          path: slug,
-          component: pageComponentPath,
-          context: { slug, previous, next },
-        }),
-      ),
-    ),
-  );
+    pageComponentPath: string
+  ) =>
+    pipe(
+      markdownRemarkNodes,
+      Arr.filter(isVisibleMarkdownRemarkNode),
+      (nodes) =>
+        pipe(
+          nodes,
+          Arr.mapWithIndex((index, node) =>
+            getNodeWithPreviousAndNextNode(node)(index, nodes)
+          ),
+          Arr.map((node) =>
+            createMarkdownRemarkPages(createPage, pageComponentPath)(node)
+          )
+        )
+    );
+
   createPageByMarkdownRemarkNodes(baseCreatePage, pageComponentPath);
 };
