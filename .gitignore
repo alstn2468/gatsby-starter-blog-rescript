@@ -118,6 +118,7 @@ public/
 **/__generated__/
 
 /*.js
+!.eslintrc.**
 lib/
 
 # rescript

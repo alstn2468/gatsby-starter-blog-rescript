@@ -102,28 +102,28 @@ export const createPages: GatsbyNode['createPages'] = async ({
 
   const getNodeWithPreviousAndNextNode =
     (currentNode: MarkdownRemarkNode) =>
-    (currentNodeIndex: number, nodes: MarkdownRemarkNode[]) => ({
-      ...currentNode,
-      previous: getPreviousNode(currentNodeIndex, nodes),
-      next: getNextNode(currentNodeIndex, nodes),
-    });
+      (currentNodeIndex: number, nodes: MarkdownRemarkNode[]) => ({
+        ...currentNode,
+        previous: getPreviousNode(currentNodeIndex, nodes),
+        next: getNextNode(currentNodeIndex, nodes),
+      });
 
   const createMarkdownRemarkPages =
     (createPage: typeof baseCreatePage, pageComponentPath: string) =>
-    (
-      remarkdownNode: MarkdownRemarkNode & {
+      (
+        remarkdownNode: MarkdownRemarkNode & {
         previous: Nullable<MarkdownRemarkNode>;
         next: Nullable<MarkdownRemarkNode>;
       }
-    ) =>
-      createPage({
-        path: remarkdownNode.fields.slug,
-        component: pageComponentPath,
-        context: {
-          previous: remarkdownNode.previous,
-          next: remarkdownNode.next,
-        },
-      });
+      ) =>
+        createPage({
+          path: remarkdownNode.fields.slug,
+          component: pageComponentPath,
+          context: {
+            previous: remarkdownNode.previous,
+            next: remarkdownNode.next,
+          },
+        });
 
   const markdownRemarkNodes = pipe(
     markdownRemarkQueryResult,

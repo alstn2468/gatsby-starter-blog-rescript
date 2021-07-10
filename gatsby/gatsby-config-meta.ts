@@ -19,4 +19,4 @@ export const metaConfig = {
     facebookAppId: '',
   },
   ga: 'UA-130514342-1',
-}
+};
