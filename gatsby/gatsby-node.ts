@@ -6,25 +6,21 @@ import { constVoid, pipe } from 'fp-ts/lib/function';
 
 export const onCreateNode: GatsbyNode['onCreateNode'] = ({
   node,
-  getNode,
   actions: {
     createNodeField,
   },
 }) => {
-  interface FileNode extends Node {
-    relativePath: string
+  interface MarkdownRemarkNode extends Node {
+    fileAbsolutePath: string
   }
-  const getFileNameFromFileNode = (fileNode: FileNode) =>
-    path.parse(fileNode.relativePath).name;
-  const createNodeWithSlug = (markdownRemarkNode: Node) => pipe(
+  const getFileNameFromNode = (markdownRemarkNode: MarkdownRemarkNode): string =>
+    path.parse(markdownRemarkNode.fileAbsolutePath).name;
+  const createMarkdownRemarkNodeWithSlug = (markdownRemarkNode: Node) => pipe(
     markdownRemarkNode,
     IO.of,
-    IO.map((node) => ({
-      fileNode: getNode(node.parent as string),
+    IO.map((markdownRemarkNode) => ({
       markdownRemarkNode,
-    })),
-    IO.map(({ fileNode, markdownRemarkNode }) => ({
-      markdownRemarkNode, slug: getFileNameFromFileNode(fileNode as FileNode)
+      slug: getFileNameFromNode(markdownRemarkNode as MarkdownRemarkNode)
     })),
     IO.map(({ markdownRemarkNode, slug }) => createNodeField({
       node: markdownRemarkNode,
@@ -33,13 +29,14 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({
     })),
   );
   const isMarkdownRemarkNode = (node: Node) => node.internal.type === 'MarkdownRemark';
-  const run = (node: Node) => pipe(
+  const createMarkdwonNode = (node: Node) => pipe(
     node,
     Option.fromPredicate(isMarkdownRemarkNode),
     Option.match(
-      constVoid,
-      createNodeWithSlug,
+      () => constVoid,
+      createMarkdownRemarkNodeWithSlug,
     ),
   );
-  run(node);
+  const run = createMarkdwonNode(node);
+  run();
 };
