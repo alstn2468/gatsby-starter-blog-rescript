@@ -4,7 +4,9 @@ import * as IO from 'fp-ts/lib/IO';
 import * as Option from 'fp-ts/lib/Option';
 import * as Either from 'fp-ts/lib/Either';
 import * as Arr from 'fp-ts/lib/Array';
-import { constVoid, pipe, identity } from 'fp-ts/lib/function';
+import {
+ constVoid, pipe, identity, 
+} from 'fp-ts/lib/function';
 
 export const onCreateNode: GatsbyNode['onCreateNode'] = ({
   node,
@@ -14,7 +16,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({
     fileAbsolutePath: string;
   }
   const getFileNameFromNode = (
-    markdownRemarkNode: MarkdownRemarkNode
+    markdownRemarkNode: MarkdownRemarkNode,
   ): string => path.parse(markdownRemarkNode.fileAbsolutePath).name;
   const createMarkdownRemarkNodeWithSlug = (markdownRemarkNode: Node) =>
     pipe(
@@ -29,8 +31,8 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({
           node: markdownRemarkNode,
           name: 'slug',
           value: slug,
-        })
-      )
+        }),
+      ),
     );
   const isMarkdownRemarkNode = (node: Node) =>
     node.internal.type === 'MarkdownRemark';
@@ -38,7 +40,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = ({
     pipe(
       node,
       Option.fromPredicate(isMarkdownRemarkNode),
-      Option.match(() => constVoid, createMarkdownRemarkNodeWithSlug)
+      Option.match(() => constVoid, createMarkdownRemarkNodeWithSlug),
     );
   const run = createMarkdwonNode(node);
   run();
@@ -49,13 +51,13 @@ export const createPages: GatsbyNode['createPages'] = async ({
   actions: { createPage: baseCreatePage },
 }) => {
   type MarkdownRemarkNode = {
-    fields: { slug: string };
-    frontmatter: { title: string; category: string; draft: boolean };
+    fields: { slug: string },
+    frontmatter: { title: string, category: string, draft: boolean },
   };
   type MarkdownRemarkNodes = {
     allMarkdownRemark: {
-      nodes: MarkdownRemarkNode[];
-    };
+      nodes: MarkdownRemarkNode[],
+    },
   };
   type Nullable<T> = T | null;
   const gql = String.raw;
@@ -80,11 +82,11 @@ export const createPages: GatsbyNode['createPages'] = async ({
   `;
   const pageComponentPath = path.resolve('src/templates/PostDetail.gen.tsx');
   const markdownRemarkQueryResult = await graphql<MarkdownRemarkNodes>(
-    markdownRemarkQuery
+    markdownRemarkQuery,
   );
 
   const queryHasError = (
-    queryResult: typeof markdownRemarkQueryResult
+    queryResult: typeof markdownRemarkQueryResult,
   ): boolean => !queryResult.errors;
 
   const isVisibleMarkdownRemarkNode = (node: MarkdownRemarkNode) =>
@@ -93,7 +95,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
 
   const getPreviousNode = (
     currentNodeIndex: number,
-    nodes: MarkdownRemarkNode[]
+    nodes: MarkdownRemarkNode[],
   ) =>
     currentNodeIndex === nodes.length - 1 ? null : nodes[currentNodeIndex + 1];
 
@@ -112,9 +114,9 @@ export const createPages: GatsbyNode['createPages'] = async ({
     (createPage: typeof baseCreatePage, pageComponentPath: string) =>
       (
         remarkdownNode: MarkdownRemarkNode & {
-        previous: Nullable<MarkdownRemarkNode>;
-        next: Nullable<MarkdownRemarkNode>;
-      }
+          previous: Nullable<MarkdownRemarkNode>,
+          next: Nullable<MarkdownRemarkNode>,
+        },
       ) =>
         createPage({
           path: remarkdownNode.fields.slug,
@@ -131,12 +133,12 @@ export const createPages: GatsbyNode['createPages'] = async ({
       throw e.errors;
     }),
     Either.map((result) => result.data?.allMarkdownRemark.nodes ?? []),
-    Either.fold(() => [], identity)
+    Either.fold(() => [], identity),
   );
 
   const createPageByMarkdownRemarkNodes = (
     createPage: typeof baseCreatePage,
-    pageComponentPath: string
+    pageComponentPath: string,
   ) =>
     pipe(
       markdownRemarkNodes,
@@ -145,12 +147,12 @@ export const createPages: GatsbyNode['createPages'] = async ({
         pipe(
           nodes,
           Arr.mapWithIndex((index, node) =>
-            getNodeWithPreviousAndNextNode(node)(index, nodes)
+            getNodeWithPreviousAndNextNode(node)(index, nodes),
           ),
           Arr.map((node) =>
-            createMarkdownRemarkPages(createPage, pageComponentPath)(node)
-          )
-        )
+            createMarkdownRemarkPages(createPage, pageComponentPath)(node),
+          ),
+        ),
     );
 
   createPageByMarkdownRemarkNodes(baseCreatePage, pageComponentPath);
