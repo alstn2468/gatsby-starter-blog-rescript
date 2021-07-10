@@ -103,14 +103,14 @@ export const createPages: GatsbyNode['createPages'] = async ({
     currentNodeIndex === 0 ? null : nodes[currentNodeIndex - 1];
 
   const getNodeWithPreviousAndNextNode =
-    (currentNode: MarkdownRemarkNode) =>
-      (currentNodeIndex: number, nodes: MarkdownRemarkNode[]) => ({
+    (nodes: MarkdownRemarkNode[]) =>
+      (currentNodeIndex: number, currentNode: MarkdownRemarkNode ) => ({
         ...currentNode,
         previous: getPreviousNode(currentNodeIndex, nodes),
         next: getNextNode(currentNodeIndex, nodes),
       });
 
-  const createMarkdownRemarkPages =
+  const getCreateMarkdownRemarkPages =
     (createPage: typeof baseCreatePage, pageComponentPath: string) =>
       (
         remarkdownNode: MarkdownRemarkNode & {
@@ -127,7 +127,9 @@ export const createPages: GatsbyNode['createPages'] = async ({
           },
         });
 
-  const markdownRemarkNodes = pipe(
+  const getMarkdownRemarkNodes = (
+    markdownRemarkQueryResult: { data?: MarkdownRemarkNodes, errors?: unknown },
+  ) => pipe(
     markdownRemarkQueryResult,
     Either.fromPredicate(queryHasError, (e) => {
       throw e.errors;
@@ -137,23 +139,23 @@ export const createPages: GatsbyNode['createPages'] = async ({
   );
 
   const createPageByMarkdownRemarkNodes = (
-    createPage: typeof baseCreatePage,
     pageComponentPath: string,
-  ) =>
+    createPage: typeof baseCreatePage,
+  ) => (markdownRemarkNodes: MarkdownRemarkNode[]) =>
     pipe(
       markdownRemarkNodes,
       Arr.filter(isVisibleMarkdownRemarkNode),
       (nodes) =>
         pipe(
           nodes,
-          Arr.mapWithIndex((index, node) =>
-            getNodeWithPreviousAndNextNode(node)(index, nodes),
-          ),
-          Arr.map((node) =>
-            createMarkdownRemarkPages(createPage, pageComponentPath)(node),
-          ),
+          Arr.mapWithIndex(getNodeWithPreviousAndNextNode(nodes)),
+          Arr.map(getCreateMarkdownRemarkPages(createPage, pageComponentPath)),
         ),
     );
 
-  createPageByMarkdownRemarkNodes(baseCreatePage, pageComponentPath);
+  pipe(
+    markdownRemarkQueryResult,
+    getMarkdownRemarkNodes,
+    createPageByMarkdownRemarkNodes(pageComponentPath, baseCreatePage),
+  );
 };
