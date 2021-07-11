@@ -12,8 +12,8 @@ if (!process.env.PUBLIC_URL) {
 const publicURL = new URL(process.env.PUBLIC_URL);
 
 const siteMetadata: GatsbyConfig['siteMetadata'] = {
-  title: 'gatsby-starter-blog-reason',
-  description: '🍭 Gatsby blog template using ReasonML',
+  title: 'gatsby-starter-blog-rescript',
+  description: '🍭 Gatsby blog template using Rescript',
   siteUrl: publicURL.origin,
   ...metaConfig,
 };
@@ -34,6 +34,12 @@ const plugins: GatsbyConfig['plugins'] = [
   'gatsby-plugin-offline',
   'gatsby-plugin-sitemap',
   'gatsby-plugin-robots-txt',
+  {
+    resolve: 'gatsby-plugin-layout',
+    options: {
+      component: require.resolve('./src/layouts/DefaultLayout.bs.js'),
+    },
+  },
   {
     resolve: 'gatsby-plugin-manifest',
     options: {
