@@ -1,6 +1,6 @@
-type metaTagItem = { name: string, content: string }
+type metaTagItem = {name: string, content: string}
 type metaTags = array<metaTagItem>
-type openGraphImageItem = { url: string, width: int, height: int, alt: string }
+type openGraphImageItem = {url: string, width: int, height: int, alt: string}
 type openGraph = {
   @as("type") _type: string,
   images: array<openGraphImageItem>,

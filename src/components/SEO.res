@@ -30,18 +30,19 @@ let make = (~title: string, ~description, ~url) => {
     <HelmetAsync.Helmet>
       <meta
         name="viewport"
-        content={
-          Js.Array.joinWith(",", [
+        content={Js.Array.joinWith(
+          ",",
+          [
             "width=device-width",
             "initial-scale=1",
             "maximum-scale=1.0",
             "minimum-scale=1",
-            "user-scalable=no"
-          ])
-        }
+            "user-scalable=no",
+          ],
+        )}
       />
     </HelmetAsync.Helmet>
   </>
-};
+}
 
 let default = make

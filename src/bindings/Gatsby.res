@@ -1,5 +1,5 @@
 @module("gatsby") external useStaticQuery: string => 'a = "useStaticQuery"
-@module("gatsby") external graphql: 'any = "graphql";
+@module("gatsby") external graphql: 'any = "graphql"
 
 module Link = {
   @module("gatsby") @react.component

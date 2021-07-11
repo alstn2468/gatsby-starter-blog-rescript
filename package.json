@@ -21,6 +21,7 @@
     "dev": "yarn prepare-gatsby && yarn re:build && gatsby develop",
     "re:build": "rescript",
     "re:start": "rescript build -w",
+    "re:format": "rescript format -all",
     "stylelint": "stylelint --fix 'src/**/*.{ts,tsx}'",
     "lint": "eslint --ext .ts,.tsx gatsby src --no-error-on-unmatched-pattern",
     "lint:fix": "eslint --ext .ts,.tsx --fix gatsby src --no-error-on-unmatched-pattern"
