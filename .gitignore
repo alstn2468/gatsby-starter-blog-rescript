@@ -126,3 +126,6 @@ lib/
 *.bs.js
 .merlin
 .bsb.lock
+
+# graphql_ppx
+.graphql_ppx_cache

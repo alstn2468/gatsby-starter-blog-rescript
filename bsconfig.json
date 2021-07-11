@@ -12,7 +12,8 @@
   },
   "reason": { "react-jsx": 3 },
   "bs-dependencies": [
-    "@rescript/react"
+    "@rescript/react",
+    "@reasonml-community/graphql-ppx"
   ],
   "sources": [
     {
@@ -31,5 +32,12 @@
     }
   ],
   "suffix": ".bs.js",
-  "refmt": 3
+  "refmt": 3,
+  "ppx-flags": [
+    [
+      "@reasonml-community/graphql-ppx/ppx",
+      "-template-tag=graphql",
+      "-fragment-in-query=exclude"
+    ]
+  ]
 }
