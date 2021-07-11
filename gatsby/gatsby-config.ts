@@ -18,13 +18,6 @@ const siteMetadata: GatsbyConfig['siteMetadata'] = {
   ...metaConfig,
 };
 
-const flags: GatsbyConfig['flags'] = {
-  FAST_DEV: true,
-  QUERY_ON_DEMAND: true,
-  LAZY_IMAGES: true,
-  PARALLEL_SOURCING: true,
-};
-
 const plugins: GatsbyConfig['plugins'] = [
   'gatsby-plugin-sharp',
   'gatsby-transformer-sharp',
@@ -124,7 +117,6 @@ const plugins: GatsbyConfig['plugins'] = [
 ];
 
 const config: GatsbyConfig = {
-  flags,
   siteMetadata,
   plugins,
 };

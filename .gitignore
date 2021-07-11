@@ -117,6 +117,7 @@ public/
 
 **/__generated__/
 
+/nodeAPI
 /*.js
 !.eslintrc.**
 lib/
