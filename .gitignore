@@ -115,6 +115,7 @@ public/
 .env*
 !.env.example
 
+# typegen
 **/__generated__/
 
 /nodeAPI

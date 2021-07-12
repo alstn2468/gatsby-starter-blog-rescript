@@ -1,0 +1,27 @@
+blockquote {
+  position: relative;
+
+  margin-top: 12px;
+  padding: 12px 8px 0px 36px;
+  //   color: #000;
+
+  border-left: none;
+
+  font-weight: 300;
+
+  &::before {
+    position: absolute;
+    top: 16px;
+    left: 4px;
+    z-index: 1;
+
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+
+    background-size: contain;
+    opacity: 0.2;
+
+    content: '';
+  }
+}

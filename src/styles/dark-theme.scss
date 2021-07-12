@@ -1,0 +1,131 @@
+body.dark {
+  color: $dark-light-font-color;
+  text-shadow: $dark-text-shadow;
+
+  background-color: $dark-background-color;
+
+  .back-home-text {
+    color: $dark-light-font-color;
+  }
+
+  .back-home {
+    border: 1px solid $dark-light-font-color;
+  }
+
+  // home
+  .home-header {
+    color: $dark-light-font-color;
+  }
+
+  .social-icon {
+    transition: fill 0.6s ease;
+
+    fill: $light-gray;
+
+    &:hover {
+      fill: $middle-gray;
+    }
+  }
+
+  .bio {
+    .author-name-content {
+      background-color: $dark-category-border-color;
+    }
+    .author-introduction {
+      color: $dark-middle-font-color;
+    }
+    a {
+      color: $dark-link-color;
+    }
+  }
+
+  .category-container {
+    border-top: 1px solid $dark-category-border-color;
+    border-right: 6px solid $dark-category-border-color;
+    border-bottom: 1px solid $dark-category-border-color;
+    border-left: 6px solid $dark-category-border-color;
+
+    background-color: $dark-category-background-color;
+    .item {
+      border: 1px solid $dark-category-border-color;
+
+      background-color: $dark-category-item-color;
+      -webkit-box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.1);
+      box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.1);
+      a {
+        color: $dark-category-text-color;
+      }
+      &[aria-selected='true'] {
+        border: 2px solid $dark-category-highlight-border-color;
+
+        font-weight: bolder;
+      }
+      &[aria-selected='true'] a {
+        color: $dark-category-highlight-text-color;
+      }
+    }
+  }
+
+  .thumbnail {
+    h3 {
+      color: $dark-light-font-color;
+    }
+    p {
+      color: $dark-middle-font-color;
+    }
+    &:hover {
+      background-color: $dark-thumbnail-hover-background-color;
+    }
+    small {
+      color: $dark-link-color;
+    }
+    border-top: 1px solid $dark-category-text-color;
+    &:first-of-type {
+      border-top: none;
+    }
+  }
+
+  .footer {
+    color: $dark-middle-font-color;
+    a {
+      color: $dark-lightest-font-color;
+    }
+  }
+
+  blockquote {
+    color: $dark-blockquote-quote-color;
+    &::before {
+      background-image: $dark-blockquote-quote-image;
+    }
+  }
+
+  figcaption {
+    margin-top: 8px;
+
+    color: $dark-light-font-color;
+    text-align: center;
+  }
+
+  h1,
+  h2 {
+    border-bottom-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .navigator {
+    a {
+      color: $navigator-text-color;
+
+      background-color: $dark-navigator-background-color;
+    }
+  }
+
+  .bmc-button {
+    background-color: $dark-sponser-background-color;
+    opacity: 1;
+
+    &:hover,
+    &:active {
+      opacity: 0.9;
+    }
+  }
+}

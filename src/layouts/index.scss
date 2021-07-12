@@ -1,0 +1,24 @@
+@import '../styles/variables.scss';
+@import '../styles/light-theme.scss';
+@import '../styles/dark-theme.scss';
+
+body {
+
+  margin: 0;
+
+  font-family: 'Noto Sans KR', sans-serif;
+
+  background-color: $light-background-color;
+
+  transition: background-color 0.3s, color 0.3s;
+  -webkit-text-size-adjust: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+}
+
+  .container {
+    box-sizing: border-box;
+    max-width: 45.5rem;
+    margin: 0 auto;
+    padding: 2.4375rem 1.21875rem;
+  }
