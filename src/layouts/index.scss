@@ -1,9 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@300;400;700;800&display=swap');
 @import '../styles/variables.scss';
 @import '../styles/light-theme.scss';
 @import '../styles/dark-theme.scss';
 
 body {
-
   margin: 0;
 
   font-family: 'Noto Sans KR', sans-serif;
@@ -13,12 +14,50 @@ body {
   transition: background-color 0.3s, color 0.3s;
   -webkit-text-size-adjust: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
 }
 
-  .container {
-    box-sizing: border-box;
-    max-width: 45.5rem;
-    margin: 0 auto;
-    padding: 2.4375rem 1.21875rem;
-  }
+.container {
+  box-sizing: border-box;
+  max-width: 45.5rem;
+  margin: 0 auto;
+  padding: 2.4375rem 1.21875rem;
+}
+
+a {
+  color: #0687f0;
+  text-decoration: none;
+
+  box-shadow: none;
+}
+a.gatsby-resp-image-link {
+  text-decoration: none;
+
+  box-shadow: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+h1 {
+  font-weight: 800;
+  font-family: 'Catamaran';
+  line-height: 1.2;
+}
+
+h2 {
+  margin-top: '56px';
+  margin-bottom: '20px';
+
+  font-weight: 700;
+  font-family: 'Catamaran';
+  line-height: 1.2;
+}
+
+ul {
+  margin-bottom: '6px';
+}
+
+li {
+  margin-bottom: '2px';
+}
