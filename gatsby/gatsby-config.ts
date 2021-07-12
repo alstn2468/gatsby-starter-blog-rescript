@@ -42,7 +42,7 @@ const plugins: GatsbyConfig['plugins'] = [
       background_color: '#ffffff',
       theme_color: '#663399',
       display: 'minimal-ui',
-      icon: 'src/images/icon.png',
+      icon: 'content/assets/icon.png',
     },
   },
   {

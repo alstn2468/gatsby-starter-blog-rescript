@@ -63,8 +63,8 @@ _WIP_
 
 ### 🍭 Tips (You can change...)
 
-- Profile image! (replace file in `/src/images/profile.png`)
-- Favicon image! (replace file in `/src/images/icon.png`)
+- Profile image! (replace file in `/content/assets/profile.png`)
+- Favicon image! (replace file in `/content/assets/icon.png`)
 - Utterances repository! (replace repository address in `/gatsby/gatsby-meta-config.ts`)
   - ⚠️ Please check, this guide(<https://utteranc.es/>)
 
