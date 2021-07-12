@@ -12,6 +12,7 @@
   },
   "reason": { "react-jsx": 3 },
   "bs-dependencies": [
+    "bs-webapi",
     "@rescript/react",
     "@reasonml-community/graphql-ppx"
   ],
