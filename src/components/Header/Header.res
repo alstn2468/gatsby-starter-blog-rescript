@@ -2,12 +2,13 @@
 
 @react.component
 let make = (~title: string, ~pathname: string) => {
-  let isRoot = pathname == ""
+  let rootPath = Constant.__PATH_PREFIX__ ++ "/"
+  let isRoot = pathname !== rootPath
   <>
     <header className="top">
       {switch isRoot {
-      | true => <Gatsby.Link _to="/"> {React.string(title)} </Gatsby.Link>
-      | false => React.null
+      | true => React.null
+      | false => <Gatsby.Link _to="/" className="link"> {React.string(title)} </Gatsby.Link>
       }}
       <GithubIcon />
     </header>
