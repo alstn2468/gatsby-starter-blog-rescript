@@ -10,7 +10,6 @@
   }
 `)
 
-// https://github.com/gatsbyjs/gatsby/issues/25406
 let useSiteMetadata = () => {
   let siteMetadataQueryResult: SiteMetadataQuery.Raw.t = Gatsby.useStaticQuery(
     SiteMetadataQuery.query,

@@ -1,10 +1,9 @@
-# Gatsby Starter Blog Rescript 🍭 [![GitHub](https://img.shields.io/github/license/cobidev/gatsby-simplefolio?color=blue)](https://github.com/alstn2468/gatsby-starter-blog-rescript/blob/master/LICENSE.md) ![GitHub stars](https://img.shields.io/github/stars/alstn2468/gatsby-starter-blog-rescript) ![GitHub forks](https://img.shields.io/github/forks/alstn2468/gatsby-starter-blog-rescript)
+# Gatsby Starter Blog Rescript 🍭
 
 <h2 align="center">
   <img src="./static/og.png" alt="Gatsby Starter Blog Rescript" width="600px" />
   <br>
 </h2>
-
 
 ## 🚀 Quick start
 
@@ -35,9 +34,47 @@
     Your site is now running at `http://localhost:8000`!
 
     _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.com/tutorial/part-five/#introducing-graphiql)._
+
+## ✏️ Customize
+
+### ⚙ Gatsby config
+
+_Learn more about Gatsby Node API in the [Gatsby document](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node)._
+
+```
+/root
+└── /gatsby
+    ├── gatsby-config.ts
+    ├── gatsby-meta-config.ts → ⭐️⭐️ Fix meta data of blog ⭐️⭐️
+    └── gatsby-node.ts
+        ├── types.ts
+        ├── createPages.ts
+        ├── onCreateNode.ts
+        └── createSchemaCustomization.ts
+```
+
+### 🏗 Structure
+
+_WIP_
+
+### 🎨 Style
+
+_WIP_
+
+### 🍭 Tips (You can change...)
+
+- Profile image! (replace file in `/src/images/profile.png`)
+- Favicon image! (replace file in `/src/images/icon.png`)
+- Utterances repository! (replace repository address in `/gatsby/gatsby-meta-config.ts`)
+  - ⚠️ Please check, this guide(<https://utteranc.es/>)
+
+## 🚧 ISSUE
+
+1. **graphql-ppx didn't support gatsby3** → [gatsby(#25406)](https://github.com/gatsbyjs/gatsby/issues/25406), [graphql-ppx(#165)](https://github.com/reasonml-community/graphql-ppx/issues/165)
+
 ## 🔍  REFERENCE
 
-- Style reference: [gatsby-starter-bee@jbee](https://github.com/JaeYeopHan/gatsby-starter-bee)
+- [gatsby-starter-bee@jbee](https://github.com/JaeYeopHan/gatsby-starter-bee)
 
 ## :bug: Bug reporting
 
