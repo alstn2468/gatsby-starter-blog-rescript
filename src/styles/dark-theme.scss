@@ -29,13 +29,12 @@ body.dark {
 
   .bio {
     .author-name-content {
+      color: $dark-link-color;
+
       background-color: $dark-category-border-color;
     }
     .author-introduction {
       color: $dark-middle-font-color;
-    }
-    a {
-      color: $dark-link-color;
     }
   }
 

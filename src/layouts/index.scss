@@ -5,6 +5,7 @@
 @import '../styles/dark-theme.scss';
 
 body {
+  min-width: 320px;
   margin: 0;
 
   font-family: 'Noto Sans KR', sans-serif;
