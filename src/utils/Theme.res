@@ -35,7 +35,7 @@ let getThemeFromLocalStorage = (defaultValue: string) => {
 }
 
 let setThemeToLocalStorage = (value: bool) => {
-  Storage.setValueToLocalStorage(localStorageThemeKey, value |> Js.String.make)
+  localStorageThemeKey -> Storage.setValueToLocalStorage(value -> Js.String.make)
 
   value
 }
