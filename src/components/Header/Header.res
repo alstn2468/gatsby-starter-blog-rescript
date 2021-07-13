@@ -3,7 +3,7 @@
 @react.component
 let make = (~title: string, ~pathname: string) => {
   let rootPath = Constant.__PATH_PREFIX__ ++ "/"
-  let isRoot = pathname !== rootPath
+  let isRoot = pathname === rootPath
   <>
     <header className="top">
       {switch isRoot {
