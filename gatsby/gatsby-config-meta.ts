@@ -2,7 +2,7 @@ export const metaConfig = {
   author: 'Minsu Kim',
   introduction: 'Software Engineer at Devsisters Corp.',
   social: {
-    twitter: 'minsu-kim-336289160',
+    linkedIn: 'minsu-kim-336289160',
     github: 'alstn2468',
     instagram: 'minsu._.0102',
     facebook: 'alstn2468',

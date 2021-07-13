@@ -3,28 +3,19 @@
 @react.component
 let make = () => {
   let siteMetadataBio = SiteMetadataBio.useSiteMetadataBio()
-  <div className="bio">
+  <section className="bio">
     <div className="author">
       <div className="author-description">
-        <BioImage author={siteMetadataBio.author} />
+        <ProfileImage author={siteMetadataBio.author} />
         <div className="author-name">
           <span className="author-name-prefix"> {React.string("Written by")} </span>
           <Author author={siteMetadataBio.author} />
           <Introduction introduction={siteMetadataBio.introduction} />
-          {switch Js.Nullable.toOption(siteMetadataBio.social) {
-          | Some(social) =>
-            <p className="author-socials">
-              <GithubLink githubId={social.github} />
-              <InstagramLink instagramId={social.instagram} />
-              <LinkedInLink linkedInId={social.twitter} />
-              <FacebookLink facebookId={social.facebook} />
-            </p>
-          | None => React.null
-          }}
+          <Social social={siteMetadataBio.social} />
         </div>
       </div>
     </div>
-  </div>
+  </section>
 }
 
 let default = make

@@ -5,7 +5,7 @@
         author
         introduction
         social {
-          twitter
+          linkedIn
           github
           instagram
           facebook

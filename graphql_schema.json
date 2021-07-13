@@ -14575,7 +14575,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "twitter",
+            "name": "linkedIn",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -15139,7 +15139,7 @@
         "description": null,
         "fields": [
           {
-            "name": "twitter",
+            "name": "linkedIn",
             "description": null,
             "args": [],
             "type": {
@@ -15560,7 +15560,7 @@
             "deprecationReason": null
           },
           {
-            "name": "siteMetadata___social___twitter",
+            "name": "siteMetadata___social___linkedIn",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
