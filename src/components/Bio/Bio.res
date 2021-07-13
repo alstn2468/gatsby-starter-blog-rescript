@@ -6,7 +6,7 @@ let make = () => {
   <div className="bio">
     <div className="author">
       <div className="author-description">
-        <img className="author-image" />
+        <BioImage author={siteMetadataBio.author} />
         <div className="author-name">
           <span className="author-name-prefix"> {React.string("Written by")} </span>
           <Author author={siteMetadataBio.author} />
