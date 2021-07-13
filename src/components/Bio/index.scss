@@ -1,0 +1,64 @@
+@import '../../styles/variables.scss';
+
+.bio {
+  margin-bottom: 24px;
+
+  .social-icon {
+    width: 26px;
+    height: auto;
+  }
+
+  .author-description {
+    position: relative;
+
+    display: flex;
+  }
+
+  .author-image {
+    min-width: 72px;
+    margin-top: 12px;
+    margin-right: 12px;
+    margin-bottom: 0;
+    border-radius: 100%;
+  }
+
+  .author-name-prefix {
+    margin-right: 4px;
+
+    font-size: 90%;
+  }
+
+  .author-name-content {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 8px;
+
+    font-weight: bolder;
+    font-size: 95%;
+
+    transform-origin: center;
+
+    pointer-events: none;
+  }
+
+  .author-introduction {
+    margin-top: 4px;
+
+    font-size: 80%;
+    line-height: 1.4;
+  }
+
+  .author-socials {
+    margin-top: 10px;
+  }
+
+  a {
+    margin-right: 8px;
+
+    font-size: 80%;
+
+    &.visited {
+      text-decoration: none;
+    }
+  }
+}
