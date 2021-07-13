@@ -3,10 +3,16 @@
 @react.component
 let make = () => {
   let (checked, setChecked) = React.useState(_ => false)
-  let toggleChecked = () => setChecked(checked => !checked)
+  let toggleChecked = checked => setChecked(_ => checked)
   let handleChange = (checked: bool) => {
-    checked->Theme.getTheme->Theme.toggleTheme->toggleChecked
+    checked
+    ->Theme.getTheme
+    ->Theme.isDarkMode
+    ->Theme.setThemeToLocalStorage
+    ->Theme.toggleTheme
+    ->toggleChecked
   }
+  Theme.useThemeEffect(handleChange)
   <div className="switch-container">
     <label htmlFor="normal-switch">
       <ReactSwitch
