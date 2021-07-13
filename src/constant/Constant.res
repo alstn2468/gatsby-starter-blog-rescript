@@ -2,8 +2,6 @@
 
 type category = [#ALL]
 
-type theme = [#DARK | #LIGHT]
-
 let homeTitle = "HOME"
 
 let scrollY = "y"

@@ -1,3 +1,5 @@
+type t = [#DARK | #LIGHT]
+
 let getTheme = (checked: bool) => checked ? #DARK : #LIGHT
 
 let isDarkMode = theme => theme === #DARK
