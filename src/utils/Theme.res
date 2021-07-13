@@ -42,11 +42,11 @@ let useThemeEffect = (handleChange: bool => unit) => {
   React.useEffect0(() => {
     if %raw(`typeof window !== undefined`) {
       DomUtil.hasClassOfBody("dark")
-      |> Js.String.make
-      |> getThemeFromLocalStorage
-      |> Js.String.make
-      |> getBoolFromBoolString
-      |> handleChange
+      ->Js.String.make
+      ->getThemeFromLocalStorage
+      ->Js.String.make
+      ->getBoolFromBoolString
+      ->handleChange
     }
 
     None

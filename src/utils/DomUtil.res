@@ -3,26 +3,23 @@ open DomRect
 
 @val external baseDocument: 'a = "document"
 
-let getElements = selector => document |> Document.querySelectorAll(selector)
+let getElements = selector => selector->Document.querySelectorAll(document)
 
-let getElement = selector => document |> Document.querySelector(selector)
+let getElement = selector => selector->Document.querySelector(document)
 
-let addClass = (element, className: string) =>
-  element |> Element.classList |> DomTokenList.add(className)
+let addClass = (element, className) => className->DomTokenList.add(element->Element.classList)
 
-let removeClass = (element, className: string) =>
-  element |> Element.classList |> DomTokenList.remove(className)
+let removeClass = (element, className) => className->DomTokenList.remove(element->Element.classList)
 
-let hasClass = (element, className: string) =>
-  element |> Element.classList |> DomTokenList.contains(className)
+let hasClass = (element, className) => className->DomTokenList.contains(element->Element.classList)
 
 let getBody = () => baseDocument["body"]
 
-let addClassToBody = (className: string) => addClass(getBody(), className)
+let addClassToBody = className => getBody()->addClass(className)
 
-let removeClassToBody = (className: string) => removeClass(getBody(), className)
+let removeClassToBody = className => getBody()->removeClass(className)
 
-let hasClassOfBody = (className: string) => hasClass(getBody(), className)
+let hasClassOfBody = className => getBody()->hasClass(className)
 
 let getRect = (className: string) => {
   switch getElement(className) {
@@ -31,10 +28,6 @@ let getRect = (className: string) => {
   }
 }
 
-let getPosY = (className: string) => {
-  getRect(className) |> y
-}
+let getPosY = (className: string) => className->getRect->y
 
-let getDocumentHeight = () => {
-  baseDocument["documentElement"]["offsetHeight"]
-}
+let getDocumentHeight = () => baseDocument["documentElement"]["offsetHeight"]
