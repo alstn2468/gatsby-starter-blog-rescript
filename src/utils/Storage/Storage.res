@@ -11,7 +11,7 @@ external localStorageGetItem: string => option<string> = "getItem"
 external localStorageSetItem: (string, string) => unit = "setItem"
 
 let isLocalStorageEmpty = localStorage => {
-  switch (Js.Nullable.toOption(Global.window), localStorage === Js.Obj.empty()) {
+  switch (Global.window, localStorage["length"] === 0) {
   | (Some(_), false) => false
   | (_, _) => true
   }

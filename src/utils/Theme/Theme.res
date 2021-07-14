@@ -42,7 +42,7 @@ let setThemeToLocalStorage = (value: bool) => {
 
 let useThemeEffect = (handleChange: bool => unit) => {
   React.useEffect0(() => {
-    switch Js.Nullable.toOption(Global.window) {
+    switch Global.window {
     | Some(_) =>
       DomUtil.hasClassOfBody("dark")
       ->Js.String.make

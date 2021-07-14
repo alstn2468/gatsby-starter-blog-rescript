@@ -11,7 +11,12 @@ let removeClass = (element, className) => className->DomTokenList.remove(element
 
 let hasClass = (element, className) => className->DomTokenList.contains(element->Element.classList)
 
-let getBody = () => Global.document["body"]
+let getBody = () => {
+  switch Global.document {
+  | Some(document) => document["body"]
+  | None => Js.Exn.raiseError("Exception: document.body is not found.")
+  }
+}
 
 let addClassToBody = className => getBody()->addClass(className)
 
@@ -28,4 +33,9 @@ let getRect = (className: string) => {
 
 let getPosY = (className: string) => className->getRect->y
 
-let getDocumentHeight = () => Global.document["documentElement"]["offsetHeight"]
+let getDocumentHeight = () => {
+  switch Global.document {
+  | Some(document) => document["documentElement"]["offsetHeight"]
+  | None => Js.Exn.raiseError("Exception: document.body is not found.")
+  }
+}

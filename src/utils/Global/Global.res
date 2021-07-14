@@ -1,3 +1,3 @@
-@val external window: 'a = "window"
+@val external window: option<'a> = "window"
 
-@val external document: 'a = "document"
+@val external document: option<'a> = "document"
