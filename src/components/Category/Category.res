@@ -31,7 +31,9 @@ let make = (
     DomUtil.scrollToLeft(ulElement, targetScollX)
   }
   let renderCategoryItem = (title: string) => {
-    <CategoryItem title scrollToCenter selectedCategory onClick={selectCategory} />
+    <CategoryItem
+      key={`category-${title}`} title scrollToCenter selectedCategory onClick={selectCategory}
+    />
   }
 
   <ul
