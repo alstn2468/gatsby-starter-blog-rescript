@@ -78,7 +78,7 @@ _WIP_
 
 ## :bug: Bug reporting
 
-[Issue](https://github.com/JaeYeopHan/gatsby-starter-bee/issues)
+[Issue](https://github.com/alstn2468/gatsby-starter-blog-rescript/issues)
 
 ## 🔒 LICENSE
 
