@@ -26,7 +26,7 @@ let make = (~author: Js.Nullable.t<string>) => {
     switch Js.Nullable.toOption(avatar.childImageSharp) {
     | Some(childImageSharp) =>
       switch Js.Nullable.toOption(childImageSharp.fixed) {
-      | Some(fixed) => <GatsbyImage fixed alt={author} className="author-image" />
+      | Some(fixed) => <GatsbyImage fixed alt={author} className="profile-image" />
       | None => React.null
       }
     | None => React.null

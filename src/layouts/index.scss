@@ -4,8 +4,11 @@
 @import '../styles/light-theme.scss';
 @import '../styles/dark-theme.scss';
 
+* {
+  box-sizing: inherit;
+}
+
 body {
-  min-width: 320px;
   margin: 0;
 
   font-family: 'Noto Sans KR', sans-serif;
@@ -30,6 +33,7 @@ a {
 
   box-shadow: none;
 }
+
 a.gatsby-resp-image-link {
   text-decoration: none;
 
@@ -41,9 +45,22 @@ a:hover {
 }
 
 h1 {
+  margin-top: 2.4375rem;
+  margin-right: 0;
+  margin-bottom: 1.21875rem;
+  margin-left: 0;
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: calc(0.40625rem - 1px);
+  padding-left: 0;
+  border-bottom: 1px solid hsla(0,0%,0%,0.07);
+
+  color: inherit;
   font-weight: 800;
+  font-size: 2rem;
   font-family: 'Catamaran';
   line-height: 1.2;
+  text-rendering: optimizeLegibility;
 }
 
 h2 {
@@ -53,6 +70,17 @@ h2 {
   font-weight: 700;
   font-family: 'Catamaran';
   line-height: 1.2;
+}
+
+p {
+  margin-top: 0;
+  margin-right: 0;
+  margin-bottom: 0.8125rem;
+  margin-left: 0;
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-left: 0;
 }
 
 ul {

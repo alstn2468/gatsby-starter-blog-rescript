@@ -2,7 +2,7 @@
 let make = (
   ~social: Js.Nullable.t<SiteMetadataBio.SiteMetadataBioQuery.Raw.t_site_siteMetadata_social>,
 ) => {
-  <p className="author-socials">
+  <div className="author-socials">
     {switch Js.Nullable.toOption(social) {
     | Some(social) => <>
         <GithubLink githubId={social.github} />
@@ -12,7 +12,7 @@ let make = (
       </>
     | None => React.null
     }}
-  </p>
+  </div>
 }
 
 let default = make

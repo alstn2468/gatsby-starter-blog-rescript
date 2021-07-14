@@ -16,8 +16,8 @@ body.light {
     color: $dark-gray;
   }
 
-  .bio {
-    .author-name-content {
+  .bio-container {
+    .author-name {
       background-color: $light-category-border-color;
     }
     .author-introduction {
