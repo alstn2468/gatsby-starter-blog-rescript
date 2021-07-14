@@ -13,9 +13,7 @@ external localStorageSetItem: (string, string) => unit = "setItem"
 let isLocalStorageEmpty = localStorage => {
   switch (Js.Nullable.toOption(Global.window), localStorage === Js.Obj.empty()) {
   | (Some(_), false) => false
-  | (Some(_), true) => true
-  | (None, false) => true
-  | (None, true) => true
+  | (_, _) => true
   }
 }
 
