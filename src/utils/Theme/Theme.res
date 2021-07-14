@@ -42,13 +42,15 @@ let setThemeToLocalStorage = (value: bool) => {
 
 let useThemeEffect = (handleChange: bool => unit) => {
   React.useEffect0(() => {
-    if %raw(`typeof window !== undefined`) {
+    switch Js.Nullable.toOption(Global.window) {
+    | Some(_) =>
       DomUtil.hasClassOfBody("dark")
       ->Js.String.make
       ->getThemeFromLocalStorage
       ->Js.String.make
       ->getBoolFromBoolString
       ->handleChange
+    | None => ()
     }
 
     None

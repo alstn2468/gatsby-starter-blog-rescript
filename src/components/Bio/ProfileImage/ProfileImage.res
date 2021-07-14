@@ -14,7 +14,9 @@ open GatsbyImage.Fragments
 
 @react.component
 let make = (~author: Js.Nullable.t<string>) => {
-  let profileImageQueryResult: ProfileImageQuery.Raw.t = Gatsby.useStaticQuery(ProfileImageQuery.query)
+  let profileImageQueryResult: ProfileImageQuery.Raw.t = Gatsby.useStaticQuery(
+    ProfileImageQuery.query,
+  )
   let author = switch Js.Nullable.toOption(author) {
   | Some(author) => author
   | None => "profile.png"
@@ -27,7 +29,7 @@ let make = (~author: Js.Nullable.t<string>) => {
       | Some(fixed) => <GatsbyImage fixed alt={author} className="author-image" />
       | None => React.null
       }
-      |None => React.null
+    | None => React.null
     }
   | None => React.null
   }

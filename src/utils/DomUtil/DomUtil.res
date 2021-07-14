@@ -1,8 +1,6 @@
 open Webapi.Dom
 open DomRect
 
-@val external baseDocument: 'a = "document"
-
 let getElements = selector => selector->Document.querySelectorAll(document)
 
 let getElement = selector => selector->Document.querySelector(document)
@@ -13,7 +11,7 @@ let removeClass = (element, className) => className->DomTokenList.remove(element
 
 let hasClass = (element, className) => className->DomTokenList.contains(element->Element.classList)
 
-let getBody = () => baseDocument["body"]
+let getBody = () => Global.document["body"]
 
 let addClassToBody = className => getBody()->addClass(className)
 
@@ -30,4 +28,4 @@ let getRect = (className: string) => {
 
 let getPosY = (className: string) => className->getRect->y
 
-let getDocumentHeight = () => baseDocument["documentElement"]["offsetHeight"]
+let getDocumentHeight = () => Global.document["documentElement"]["offsetHeight"]
