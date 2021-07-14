@@ -10,8 +10,11 @@ external localStorageGetItem: string => option<string> = "getItem"
 @val @scope(("window", "localStorage"))
 external localStorageSetItem: (string, string) => unit = "setItem"
 
+@val @scope(("window", "localStorage", "length"))
+external localStorageLength: int = "length"
+
 let isLocalStorageEmpty = localStorage => {
-  switch (Global.window, localStorage["length"] === 0) {
+  switch (Global.window, localStorageLength === 0) {
   | (Some(_), false) => false
   | (_, _) => true
   }
