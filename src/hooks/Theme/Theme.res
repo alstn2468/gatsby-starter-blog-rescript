@@ -26,7 +26,7 @@ let toggleTheme = isDarkMode => {
   isDarkMode
 }
 
-let localStorageThemeKey = `${Constant.localStorageKey}/theme`
+let localStorageThemeKey = `${Storage.localStorageKey}/theme`
 
 let getThemeFromLocalStorage = (defaultValue: string) => {
   let value = Storage.getValueFromLocalStorage(localStorageThemeKey)

@@ -31,6 +31,28 @@ let getRect = (className: string) => {
   }
 }
 
+let getRectFromElement = element => {
+  element->Element.getBoundingClientRect
+}
+
+let getLeftFromElement = element => {
+  element->getRectFromElement->left
+}
+
+let getOffsetWidthFromElement = element => {
+  element->HtmlElement.offsetWidth
+}
+
+let getScrollLeftFromElement = element => {
+  element->HtmlElement.scrollLeft
+}
+
+let scrollToLeft = %raw(`
+  function (element, left) {
+    element.scroll({left, top: 0, behavior: "smooth"})
+  }
+`)
+
 let getPosY = (className: string) => className->getRect->y
 
 let getDocumentHeight = () => {

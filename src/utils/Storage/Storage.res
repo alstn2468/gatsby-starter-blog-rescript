@@ -1,3 +1,6 @@
+let sessionStorageKey = "__felog_session_storage_key__"
+let localStorageKey = "__felog_local_storage_key__"
+
 @val @scope("window")
 external localStorage: 'a = "localStorage"
 

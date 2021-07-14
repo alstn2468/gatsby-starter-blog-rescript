@@ -64,8 +64,8 @@ h1 {
 }
 
 h2 {
-  margin-top: '56px';
-  margin-bottom: '20px';
+  margin-top: 56px;
+  margin-bottom: 20px;
 
   font-weight: 700;
   font-family: 'Catamaran';
@@ -84,9 +84,11 @@ p {
 }
 
 ul {
-  margin-bottom: '6px';
+  margin-bottom: 6px;
+  list-style-position: outside;
+  list-style-image: none;
 }
 
 li {
-  margin-bottom: '2px';
+  margin-bottom: 2px;
 }

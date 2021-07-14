@@ -1,6 +1,6 @@
 ---
-title: 'category 3 test'
+title: 'category 2 test'
 date: 2021-07-08 00:00:01
-category: 'category3'
+category: 'category2'
 draft: false
 ---
