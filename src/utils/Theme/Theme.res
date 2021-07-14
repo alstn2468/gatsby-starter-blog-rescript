@@ -6,6 +6,8 @@ let isDarkMode = theme => theme === #DARK
 
 let getBoolFromBoolString = (value: string) => value === "true"
 
+let usePreferDarkMode = () => Media.useMedia(["(prefers-color-scheme: dark)"], ["true"], "false")
+
 let addDarkThemeClassToBody = () => {
   DomUtil.addClassToBody("dark")
   DomUtil.removeClassToBody("light")
@@ -44,8 +46,7 @@ let useThemeEffect = (handleChange: bool => unit) => {
   React.useEffect0(() => {
     switch Global.window {
     | Some(_) =>
-      DomUtil.hasClassOfBody("dark")
-      ->Js.String.make
+      usePreferDarkMode()
       ->getThemeFromLocalStorage
       ->Js.String.make
       ->getBoolFromBoolString
