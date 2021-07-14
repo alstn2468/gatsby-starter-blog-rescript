@@ -14,22 +14,26 @@ let make = (
       | None => Js.Exn.raiseError("Exception: element is not found!")
       }
     }
+
     let tabElement = getElementFromRef(tabRef)
     let tabWidth =
       tabElement->Webapi.Dom.Element.unsafeAsHtmlElement->DomUtil.getOffsetWidthFromElement
     let tabLeft = tabElement->DomUtil.getLeftFromElement
+
     let ulElement = getElementFromRef(ulElementRef)
     let ulElementScrollLeft =
       ulElement->Webapi.Dom.Element.unsafeAsHtmlElement->DomUtil.getScrollLeftFromElement
     let ulElementWidth =
       ulElement->Webapi.Dom.Element.unsafeAsHtmlElement->DomUtil.getOffsetWidthFromElement
     let ulElementLeft = ulElement->DomUtil.getLeftFromElement
+
     let refineLeft = tabLeft -. ulElementLeft
     let targetScollX =
       ulElementScrollLeft +. refineLeft -. (ulElementWidth / 2 + tabWidth / 2)->Js.Int.toFloat
 
     DomUtil.scrollToLeft(ulElement, targetScollX)
   }
+
   let renderCategoryItem = (title: string) => {
     <CategoryItem
       key={`category-${title}`} title scrollToCenter selectedCategory onClick={selectCategory}
