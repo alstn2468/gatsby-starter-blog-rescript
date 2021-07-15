@@ -44,15 +44,11 @@ let setThemeToLocalStorage = (value: bool) => {
 
 let useThemeEffect = (handleChange: bool => unit) => {
   React.useEffect0(() => {
-    switch Global.window {
-    | Some(_) =>
-      usePreferDarkMode()
-      ->getThemeFromLocalStorage
-      ->Js.String.make
-      ->getBoolFromBoolString
-      ->handleChange
-    | None => ()
-    }
+    usePreferDarkMode()
+    ->getThemeFromLocalStorage
+    ->Js.String.make
+    ->getBoolFromBoolString
+    ->handleChange
 
     None
   })

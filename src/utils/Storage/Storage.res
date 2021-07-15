@@ -17,9 +17,9 @@ external localStorageSetItem: (string, string) => unit = "setItem"
 external localStorageLength: int = "length"
 
 let isLocalStorageEmpty = () => {
-  switch (Global.window, localStorageLength === 0) {
-  | (Some(_), false) => false
-  | (_, _) => true
+  switch localStorageLength === 0 {
+  | false => false
+  | _ => true
   }
 }
 

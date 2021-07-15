@@ -1,6 +1,6 @@
 @react.component
 let make = (~location: Gatsby.location) => {
-  let (category, setCategory) = React.useState(_ => "All")
+  let (category, selectCategory) = UseCategory.useCategory();
   let (siteMetadata, markdownRemarkNodes) = MainPageData.useMainPageData()
   let countOfInitialPost = switch Js.Nullable.toOption(siteMetadata.configs) {
   | Some(configs) =>
@@ -17,15 +17,12 @@ let make = (~location: Gatsby.location) => {
     frontmatter: MainPageData.MainPageQuery.Raw.t_allMarkdownRemark_nodes_frontmatter,
   ) => frontmatter.category
   let categories = markdownRemarkNodes->Js.Array2.map(getFrontMatter)->Js.Array2.map(getCategory)
-  let selectCategory = category => {
-    setCategory(_ => category)
-    Js.log(category)
-  }
   <>
     <ThemeSwitch />
     <Title title={siteMetadata.title} />
     <Bio />
     <Category categories selectedCategory={category} selectCategory />
+    <div style={ReactDOM.Style.make(~height="2000px", ())}></div>
   </>
 }
 

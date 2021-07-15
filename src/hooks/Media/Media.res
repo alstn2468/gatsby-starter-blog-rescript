@@ -2,10 +2,7 @@ type t
 type mediaQueryList = {matches: bool, media: string}
 
 let getMatchMediaArray = (queries: array<string>): array<mediaQueryList> => {
-  switch Global.window {
-  | Some(window) => queries->Js.Array2.map(window["matchMedia"])
-  | None => []
-  }
+  queries->Js.Array2.map(Global.window["matchMedia"])
 }
 
 let useMedia = (queries: array<string>, values: array<'a>, defaultValue: 'a): 'a => {

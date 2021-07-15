@@ -11,12 +11,7 @@ let removeClass = (element, className) => className->DomTokenList.remove(element
 
 let hasClass = (element, className) => className->DomTokenList.contains(element->Element.classList)
 
-let getBody = () => {
-  switch Global.document {
-  | Some(document) => document["body"]
-  | None => Js.Exn.raiseError("Exception: document.body is not found.")
-  }
-}
+let getBody = () => Global.document["body"]
 
 let addClassToBody = className => getBody()->addClass(className)
 
@@ -55,9 +50,4 @@ let scrollToLeft = %raw(`
 
 let getPosY = (className: string) => className->getRect->y
 
-let getDocumentHeight = () => {
-  switch Global.document {
-  | Some(document) => document["documentElement"]["offsetHeight"]
-  | None => Js.Exn.raiseError("Exception: document.body is not found.")
-  }
-}
+let getDocumentHeight = () => Global.document["documentElement"]["offsetHeight"]
