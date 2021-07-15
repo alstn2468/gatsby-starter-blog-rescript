@@ -11,17 +11,21 @@ let useCategory = () => {
 
   let selectCategory = category => {
     let pathName = Global.window["location"]["pathname"]
-    let queryString = QueryString.stringify({ "category": category })
+    let queryString = QueryString.stringify({"category": category})
     setCategory(_ => category)
     adjustScroll()
-    Global.window["history"]["pushState"](.{"category": category}, "", `${pathName}?${queryString}`)
+    Global.window["history"]["pushState"](.
+      {"category": category},
+      "",
+      `${pathName}?${queryString}`,
+    )
   }
 
   let changeCategory = (withScroll: option<bool>) => {
     let search = Global.window["location"]["search"]
     let category = switch QueryString.parse(search)["categroy"] {
-      | Some(category) => category
-      | None => "All"
+    | Some(category) => category
+    | None => "All"
     }
     setCategory(_ => category)
     switch withScroll {
@@ -31,19 +35,23 @@ let useCategory = () => {
   }
 
   React.useEffect0(() => {
-    Scroll.init();
+    Scroll.init()
 
-    Some(() => {
-      Scroll.destory()
-    });
+    Some(
+      () => {
+        Scroll.destory()
+      },
+    )
   })
 
   React.useEffect0(() => {
     Global.window["addEventListener"]("popstate", changeCategory)
 
-    Some(() => {
-      Global.window["removeEventListener"]("popstate", changeCategory)
-    })
+    Some(
+      () => {
+        Global.window["removeEventListener"]("popstate", changeCategory)
+      },
+    )
   })
 
   React.useEffect0(() => {
