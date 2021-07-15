@@ -12,7 +12,6 @@ let getUniqItemArray = array => {
 let make = (~location: Gatsby.location) => {
   let (category, selectCategory) = UseCategory.useCategory()
   let (siteMetadata, markdownRemarkNodes) = MainPageData.useMainPageData()
-
   let countOfInitialPost = switch Js.Nullable.toOption(siteMetadata.configs) {
   | Some(configs) =>
     switch Js.Nullable.toOption(configs.countOfInitialPost) {

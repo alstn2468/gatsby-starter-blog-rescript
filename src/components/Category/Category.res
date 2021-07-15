@@ -31,7 +31,7 @@ let make = (
     let targetScollX =
       ulElementScrollLeft +. refineLeft -. (ulElementWidth / 2 + tabWidth / 2)->Js.Int.toFloat
 
-    DomUtil.scrollToLeft(ulElement, targetScollX)
+    Scroll.scrollToLeft(ulElement, targetScollX)
   }
 
   let renderCategoryItem = (title: string) => {

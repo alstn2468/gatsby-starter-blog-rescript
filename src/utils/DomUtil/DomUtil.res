@@ -11,7 +11,7 @@ let removeClass = (element, className) => className->DomTokenList.remove(element
 
 let hasClass = (element, className) => className->DomTokenList.contains(element->Element.classList)
 
-let getBody = () => Global.document["body"]
+let getBody = () => Global.body
 
 let addClassToBody = className => getBody()->addClass(className)
 
@@ -42,12 +42,6 @@ let getScrollLeftFromElement = element => {
   element->HtmlElement.scrollLeft
 }
 
-let scrollToLeft = %raw(`
-  function (element, left) {
-    element.scroll({left, top: 0, behavior: "smooth"})
-  }
-`)
-
 let getPosY = (className: string) => className->getRect->y
 
-let getDocumentHeight = () => Global.document["documentElement"]["offsetHeight"]
+let getDocumentHeight = () => Global.offsetHeight
