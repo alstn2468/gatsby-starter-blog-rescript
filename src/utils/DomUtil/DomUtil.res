@@ -34,6 +34,10 @@ let getLeftFromElement = element => {
   element->getRectFromElement->left
 }
 
+let getOffsetTopFromElement = element => {
+  element->HtmlElement.offsetTop
+}
+
 let getOffsetWidthFromElement = element => {
   element->HtmlElement.offsetWidth
 }

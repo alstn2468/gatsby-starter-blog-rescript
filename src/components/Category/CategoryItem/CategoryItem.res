@@ -5,23 +5,22 @@ let make = (
   ~onClick: string => unit,
   ~scrollToCenter: React.ref<Js.Nullable.t<'a>> => unit,
 ) => {
-  let liElement = React.useRef(Js.Nullable.null)
+  let liElementRef = React.useRef(Js.Nullable.null)
 
   let handleClick = (_: ReactEvent.Mouse.t) => {
-    scrollToCenter(liElement)
     onClick(title)
   }
 
   React.useEffect2(() => {
     if selectedCategory === title {
-      scrollToCenter(liElement)
+      scrollToCenter(liElementRef)
     }
 
     None
-  }, (selectedCategory, liElement))
+  }, (selectedCategory, liElementRef))
 
   <li
-    ref={ReactDOM.Ref.domRef(liElement)}
+    ref={ReactDOM.Ref.domRef(liElementRef)}
     className="category-item"
     role="tab"
     ariaSelected={selectedCategory === title}>
