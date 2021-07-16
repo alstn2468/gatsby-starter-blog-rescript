@@ -3,17 +3,18 @@ let make = (
   ~title: string,
   ~selectedCategory: string,
   ~onClick: string => unit,
+  ~scrollToCenter: React.ref<Js.Nullable.t<'a>> => unit,
 ) => {
   let liElement = React.useRef(Js.Nullable.null)
 
   let handleClick = (_: ReactEvent.Mouse.t) => {
-    Scroll.scrollToCenter(liElement)
+    scrollToCenter(liElement)
     onClick(title)
   }
 
   React.useEffect2(() => {
     if selectedCategory === title {
-      Scroll.scrollToCenter(liElement)
+      scrollToCenter(liElement)
     }
 
     None

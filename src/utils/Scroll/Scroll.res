@@ -4,12 +4,8 @@ let adjustScroll = (destPos: int) => {
   }
 }
 
-let scrollToCenter = %raw(`
-  function (element) {
-    element.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "center"
-    })
+let scrollToLeft = %raw(`
+  function (element, left) {
+    element.scroll({left, top: 0, behavior: "smooth"})
   }
 `)

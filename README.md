@@ -71,6 +71,7 @@ _WIP_
 ## 🚧 ISSUE
 
 1. **graphql-ppx didn't support gatsby3** → [gatsby(#25406)](https://github.com/gatsbyjs/gatsby/issues/25406), [graphql-ppx(#165)](https://github.com/reasonml-community/graphql-ppx/issues/165)
+2. **scrollIntoView with smooth behavior** [chromium(#833617)](https://bugs.chromium.org/p/chromium/issues/detail?id=833617)
 
 ## 🔍  REFERENCE
 
