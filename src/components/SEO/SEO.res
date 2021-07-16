@@ -1,8 +1,10 @@
 @react.component
-let make = (~title: string, ~description, ~url) => {
+let make = (~title: string, ~description: string) => {
+  let siteMetadata = SiteMetadata.useSiteMetadata()
   <>
     <GatsbySEO.Helemt
       title={title}
+      titleTemplate={`%s | ${siteMetadata.title}`}
       metaTags={[
         {
           name: "description",
@@ -13,7 +15,7 @@ let make = (~title: string, ~description, ~url) => {
         _type: "website",
         images: [
           {
-            url: Js.String.concat("/og.png", url),
+            url: Js.String.concat("/og.png", siteMetadata.siteUrl),
             width: 1200,
             height: 630,
             alt: title,
@@ -21,11 +23,11 @@ let make = (~title: string, ~description, ~url) => {
         ],
         title: title,
         site_name: title,
-        url: url,
+        url: siteMetadata.siteUrl,
         locale: "ko_kr",
       }}
       language="ko"
-      canonical={url}
+      canonical={siteMetadata.siteUrl}
     />
     <HelmetAsync.Helmet>
       <meta

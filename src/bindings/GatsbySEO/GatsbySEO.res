@@ -14,6 +14,7 @@ module Helemt = {
   @module("gatsby-plugin-next-seo") @react.component
   external make: (
     ~title: string,
+    ~titleTemplate: string=?,
     ~metaTags: metaTags,
     ~openGraph: openGraph,
     ~language: string,

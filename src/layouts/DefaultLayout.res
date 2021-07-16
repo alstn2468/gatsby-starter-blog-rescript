@@ -6,7 +6,8 @@ let make = (~children: React.element, ~location: Gatsby.location) => {
   <>
     <Header title={siteMetadata.title} pathname={location.pathname} />
     <SEO
-      title={siteMetadata.title} description={siteMetadata.description} url={siteMetadata.siteUrl}
+      title="HOME"
+      description={siteMetadata.description}
     />
     <div className="container"> {children} </div>
   </>
